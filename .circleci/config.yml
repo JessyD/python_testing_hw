@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - run:
+          name: Install Python deps in a virtual environment
+          command: |
+            python3 -m venv myenv
+            . myenv/bin/activate
+            pip install numpy
+      - run:
+          command: |
+            . myenv/bin/activate
+            python demean_age.py
